@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Mynav from './components/Mynav';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Content from './components/Content';
+
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import MoreContent from './components/MoreContent';
+import AddPlayer from './components/AddPlayer';
+import UpdatePlayer from './components/UpdatePlayer'
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div >
+      <Mynav />
+      <div className="container mt-3">
+      {/* A <Switch> looks through its children <Route>s and renders the first one that matches the current URL. */}
+      <Routes>
+        <Route path='/' element={<Content />}>
+        </Route>
+        <Route path='/more/:id' element={<MoreContent />}>
+        </Route>
+        <Route path='/addplayer' element={<AddPlayer />}>
+        </Route>
+        <Route path='/updateplayer/:id' element={<UpdatePlayer />}>
+        </Route>
+      </Routes>
+      </div>
     </div>
+    </Router>
   );
 }
 
